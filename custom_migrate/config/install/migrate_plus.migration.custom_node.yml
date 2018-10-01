@@ -1,0 +1,24 @@
+id: custom_node
+label: Custom Node migration
+migration_group: custom
+source:
+  plugin: custom_node
+destination:
+  plugin: entity:node
+  default_bundle: event_details
+process:
+  type:
+    plugin: default_value
+    default_value: page
+  title: name
+  nid: bid
+  vid: bid
+  uid:
+    plugin: migration_lookup
+    migration: custom_user
+    source: aid
+  sticky:
+    plugin: default_value
+    default_value: 0
+  'body/value': body
+  'body/summary': excerpt
