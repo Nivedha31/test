@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the user module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function test_schema() {
+  $schema['test'] = [
+    'description' => 'Stores module data as key/value pairs per user.',
+    'fields' => [
+      'uid' => [
+        'description' => 'Primary key',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'name' => [
+        'description' => 'The identifier of the data.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+    ],
+    'primary key' => ['uid'],
+  ];
+
+  return $schema;
+}

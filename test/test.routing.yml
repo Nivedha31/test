@@ -1,0 +1,7 @@
+test.sample_form:
+  path: '/sampleform'
+  defaults:
+    _form: '\Drupal\test\Form\SampleForm'
+    _title: 'Sample form'
+  requirements:
+    _user_is_logged_in: 'TRUE'
