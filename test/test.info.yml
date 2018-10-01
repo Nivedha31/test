@@ -1,0 +1,6 @@
+name: Test
+type: module
+description: 'Sample form'
+package: Custom
+core: 8.x
+
