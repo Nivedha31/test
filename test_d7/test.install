@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the test module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function test_schema() {
+  $schema['test'] = array(
+    'description' => 'Stores form values',
+    'fields' => array(
+      'id' => array(
+        'description' => 'Primary Key: Unique ID.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+	  'uid' => array(
+        'description' => 'Unique user id.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'name' => array(
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'user name.',
+      ),
+      'password' => array(
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Password',
+      ),
+	  'domain' => array(
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'domain',
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+   return $schema;
+}

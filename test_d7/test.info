@@ -1,0 +1,6 @@
+name = Test
+description = module to store form values to database
+package = Core
+version = VERSION
+core = 7.x
+configure = admin/config/test

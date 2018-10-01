@@ -1,0 +1,99 @@
+<?php
+
+function test_menu() {
+  $items['sample-form'] = array(
+    'title' => 'Sample Form',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('sample_form'),
+    'access callback' => 'user_access',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+ /* $items['admin/config/test'] = array(
+    'title' => 'test',
+	'page callback' => 'drupal_get_form',
+    'page arguments' => array('meme_nive_settings_form'),
+    'access arguments' => array('meme admin access'),
+	#'type' => MENU_NORMAL_ITEM,
+  );
+  $items['admin/config/test/dfd'] = array(
+    'title' => 'Current posts',
+    'description' => 'Configuration for Current posts module',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('meme_nive_settings_form'),
+    'access arguments' => array('access administration pages'),
+    #'type' => MENU_NORMAL_ITEM,
+  );*/
+  $items['admin/config/test'] = array(
+    'title' => 'test',
+    'description' => 'Configure user accounts.',
+    #'page callback' => 'check',
+	'access arguments' => array('access administration pages'),
+  );
+  $items['admin/config/test/accounts'] = array(
+    'title' => 'test settings',
+    'description' => 'Configure default behavior of users, including registration requirements, e-mails, fields, and user pictures.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('meme_nive_settings_form'),
+    'access arguments' => array('administer users'),
+  );
+  return $items;
+}
+function check() {
+	return true;
+}
+function meme_nive_settings_form($form, &$form_state) {
+  $form['your_message'] = array(
+    '#title' => t('Message'),
+    '#type' => 'textfield',
+    '#description' => t('Enter Message here'),
+    '#default_value' => variable_get('your_message', '')
+  );
+  return system_settings_form($form);
+}
+function sample_form(&$form, $form_state) {
+	global $user;
+	$form['name'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Name'),
+	  '#default_value' => NULL,
+      '#size' => 30,
+      '#maxlength' => 255,
+    );
+    $form['password'] = array(
+      '#type' => 'password',
+      '#title' => t('Password'),
+	  '#default_value' => NULL,
+      '#size' => 30,
+      '#maxlength' => 255,
+    );
+    $form['domain'] = array(
+      '#type' => 'select',
+      '#title' => t('Select box'),
+      '#default_value' => NULL,
+      '#options' => array(
+		1 => 'Tech',
+		2 => 'Infra',
+		3 => 'BPO',
+		),
+    '#description' => t('Choose an option.'),
+    );
+	$form['actions']['submit'] = array('#type' => 'submit',
+    '#value' => t('Save'),
+   );
+	return $form;
+}
+
+function sample_form_submit(&$form, $form_state) {
+	require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
+	global $user;
+	$query = db_insert('test')
+    ->fields(array(
+	  'uid' => $user->uid,
+      'name' => $form_state['values']['name'],
+      'password' => user_hash_password($form_state['values']['password']),
+      'domain' => $form_state['values']['domain'],
+    ))
+    ->execute();
+	drupal_set_message(t('Form values are saved successfully'));
+}
