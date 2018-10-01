@@ -1,0 +1,17 @@
+{{ attach_library('hello_world/hello_world_global') }}
+<div>Hi <span class="learning-changes">{{ test_var }}</span>, I am from learning template</div>
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+
+<div class="row">
+  <div class="col-md-6">
+    {{ form.first_name }}
+  </div>
+  <div class="col-md-6">
+    {{ form.last_name }}
+  </div>
+  <div class="actions">
+	{{ form.submit }}
+  </div>
+</div>

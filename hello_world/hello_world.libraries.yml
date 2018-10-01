@@ -1,0 +1,8 @@
+hello_world_global:
+  version: 1.x
+  css:
+    theme:
+      css/hello_world.css: {}
+  js:
+    js/hello_world.js: {}
+    https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js: { type: external, minified: true }

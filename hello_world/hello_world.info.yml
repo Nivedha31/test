@@ -1,0 +1,6 @@
+name: Hello World
+type: module
+description: Say Hello World
+package: Custom
+core: 8.x
+configure: hello_world.admin_settings

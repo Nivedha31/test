@@ -1,0 +1,25 @@
+<?php
+
+function hello_world_element_info_alter(array &$types) {
+	if(isset($types['textfield'])) {
+		//$types['textfield']['#attached']['library'][] = 'hello_world/hello_world_global';
+	}
+}
+function hello_world_page_attachments(array &$page) {
+  //\Drupal::logger('hello_world')->notice('<pre>'.print_r($page, TRUE).'</pre>'); 
+  $route_match = \Drupal::routeMatch();
+  if ($route_match->getRouteName() == 'hello_world') {
+      $page['#attached']['library'][] = 'hello_world/hello_world_global';
+  }
+  $page['#attached']['drupalSettings']['a']['b'] = 'baerdfdfr';
+}
+function hello_world_theme($existing, $type, $theme, $path) {
+  return [
+    'my_template' => [
+      'render element' => 'form',
+    ],
+  ];
+}
+function template_preprocess_my_template(&$variables) {
+	$variables['test_var'] = 'Riya';
+}

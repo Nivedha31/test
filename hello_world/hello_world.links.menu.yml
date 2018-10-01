@@ -1,0 +1,11 @@
+hello_world.demo:
+  title: 'Sample Form'
+  description: 'Sample Form Page'
+  parent: menu
+  menu_name: main
+  route_name: hello_world.sampleform
+hello_world.admin:
+  title: 'Sample Settings Form'
+  description: 'Sample Settings Form'
+  parent: system.admin_config_development
+  route_name: hello_world.admin_settings

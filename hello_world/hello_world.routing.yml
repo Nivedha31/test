@@ -1,0 +1,27 @@
+hello_world:
+    path: /hello/world
+    defaults:
+        _controller: Drupal\hello_world\Controller\HelloWorldController::hello
+    requirements:
+        _permission: 'View Learning module page'
+hello_world.sampleform:
+    path: /myform
+    defaults:
+        _form: Drupal\hello_world\Form\SampleForm
+    requirements:
+        _permission: 'access content'   
+hello_world.delete:
+  path: '/hello/{id}/delete/{type}'
+  defaults:
+    _form: '\Drupal\hello_world\Form\ConfirmDeleteForm'
+    _title: 'Confirm Deletion'
+  requirements:
+    _permission: 'administer site configuration'
+    id: ^\d+$
+hello_world.admin_settings:
+  path: '/admin/config/hello_world'
+  defaults:
+    _form: '\Drupal\hello_world\Form\ModuleConfigurationForm'
+    _title: 'hello_world configuration screen'
+  requirements:
+    _permission: 'administer site configuration'
